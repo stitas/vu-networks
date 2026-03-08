@@ -25,6 +25,7 @@ void handle_get(int client) {
         send_all(client, buffer, strlen(buffer));
     }
 
+    send_all(client, "END\n", 4);
     fclose(f);
 }
 

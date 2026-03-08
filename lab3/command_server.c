@@ -14,8 +14,12 @@ void forward_to_storage(int storage, int client, char *cmd) {
         char buffer[BUFFER_SIZE];
         int n;
 
-        while ((n = recv(storage, buffer, BUFFER_SIZE, 0)) > 0)
+        while ((n = recv(storage, buffer, BUFFER_SIZE, 0)) > 0) {
+            if (strncmp(buffer, "END\n", n) == 0)
+                break;
+
             send_all(client, buffer, n);
+        }
     }
 }
 
