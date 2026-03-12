@@ -49,7 +49,12 @@ static void handle_get(int client) {
         send_all(client, buffer, (int)n);
     }
 
+    
     fclose(f);
+
+    FILE *f2 = fopen(FILE_NAME, "w");
+    fwrite("", 1, 1, f2);
+    fclose(f2);
 }
 
 int main(int argc, char **argv) {
